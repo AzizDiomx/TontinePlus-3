@@ -1,16 +1,7 @@
-// app/settings/profile.tsx
 import React, { useState } from "react";
 import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StatusBar,
+  View, Text, ScrollView, StyleSheet, TouchableOpacity,
+  Alert, Image, KeyboardAvoidingView, Platform, StatusBar,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -26,7 +17,7 @@ import AppInput from "../../src/components/common/AppInput";
 import AppButton from "../../src/components/common/AppButton";
 
 const schema = z.object({
-  name: z.string().min(2, "Le nom doit avoir au moins 2 caractères"),
+  name:  z.string().min(2, "Le nom doit avoir au moins 2 caractères"),
   phone: z.string().min(8, "Numéro de téléphone invalide"),
 });
 type ProfileForm = z.infer<typeof schema>;
@@ -38,43 +29,26 @@ export default function ProfileScreen() {
   const C = theme.colors;
   const [photo, setPhoto] = useState<string | null>(user?.photoUri ?? null);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ProfileForm>({
+  const { control, handleSubmit, formState: { errors } } = useForm<ProfileForm>({
     resolver: zodResolver(schema),
     defaultValues: { name: user?.name ?? "", phone: user?.phone ?? "" },
   });
 
   const pickPhoto = async () => {
     const r = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images"],
-      allowsEditing: true,
-      aspect: [1, 1] as [number, number],
-      quality: 0.7,
+      mediaTypes: ["images"], allowsEditing: true,
+      aspect: [1,1] as [number,number], quality: 0.7,
     });
     if (!r.canceled) setPhoto(r.assets[0].uri);
   };
 
   const onSubmit = async (data: ProfileForm) => {
     const ok = await updateProfile({ ...data, photoUri: photo ?? undefined });
-    if (ok)
-      Alert.alert(
-        "Profil mis à jour",
-        "Vos informations ont été sauvegardées.",
-        [{ text: "OK", onPress: () => router.back() }]
-      );
+    if (ok) Alert.alert("Profil mis à jour", "Vos informations ont été sauvegardées.", [{ text: "OK", onPress: () => router.back() }]);
     else Alert.alert("Erreur", "Impossible de mettre à jour le profil");
   };
 
-  const initials =
-    user?.name
-      ?.split(" ")
-      .map((n: string) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2) ?? "?";
+  const initials = user?.name?.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0,2) ?? "?";
 
   return (
     <View style={[s.root, { backgroundColor: C.background }]}>
@@ -88,11 +62,7 @@ export default function ProfileScreen() {
           <View style={s.iconBtn} />
         </View>
         <View style={s.heroCentered}>
-          <TouchableOpacity
-            style={s.photoWrap}
-            onPress={pickPhoto}
-            activeOpacity={0.8}
-          >
+          <TouchableOpacity style={s.photoWrap} onPress={pickPhoto} activeOpacity={0.8}>
             {photo ? (
               <Image source={{ uri: photo }} style={s.photo} />
             ) : (
@@ -109,61 +79,77 @@ export default function ProfileScreen() {
         </View>
       </SafeAreaView>
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        <ScrollView
-          contentContainerStyle={s.scroll}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-        >
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
           <View style={{ height: 8 }} />
-          <SLabel
-            icon="person-circle-outline"
-            label="INFORMATIONS"
-            color={C.primary}
-          />
-          <Controller
-            control={control}
-            name="name"
+          <SLabel icon="person-circle-outline" label="INFORMATIONS" color={C.primary} />
+          <Controller control={control} name="name"
             render={({ field: { onChange, value } }) => (
-              <AppInput
-                label="Nom complet"
-                value={value}
-                onChangeText={onChange}
-                error={errors.name?.message}
-                leftIcon="person-outline"
-                autoCapitalize="words"
-              />
+              <AppInput label="Nom complet" value={value} onChangeText={onChange}
+                error={errors.name?.message} leftIcon="person-outline" autoCapitalize="words" />
             )}
           />
-          <Controller
-            control={control}
-            name="phone"
+          <Controller control={control} name="phone"
             render={({ field: { onChange, value } }) => (
-              <AppInput
-                label="Téléphone"
-                value={value}
-                onChangeText={onChange}
-                error={errors.phone?.message}
-                leftIcon="call-outline"
-                keyboardType="phone-pad"
-              />
+              <AppInput label="Téléphone" value={value} onChangeText={onChange}
+                error={errors.phone?.message} leftIcon="call-outline" keyboardType="phone-pad" />
             )}
           />
           <View style={{ marginTop: 20, gap: 12 }}>
-            <AppButton
-              title="Sauvegarder"
-              onPress={handleSubmit(onSubmit)}
-              loading={isLoading}
-            />
+            <AppButton title="Sauvegarder" onPress={handleSubmit(onSubmit)} loading={isLoading} />
+            <TouchableOpacity style={[s.cancelBtn, { borderColor: C.border }]} onPress={() => router.back()}>
+              <Text style={[s.cancelText, { color: C.textSecondary }]}>Annuler</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Suppression de compte — requis Google Play */}
+          <View style={[s.dangerZone, { borderColor: C.error + "30" }]}>
+            <Text style={[s.dangerTitle, { color: C.error }]}>Zone dangereuse</Text>
+            <Text style={[s.dangerSub, { color: C.textSecondary }]}>
+              La suppression est irréversible. Toutes vos données seront effacées définitivement.
+            </Text>
             <TouchableOpacity
-              style={[s.cancelBtn, { borderColor: C.border }]}
-              onPress={() => router.back()}
+              style={[s.deleteAccountBtn, { borderColor: C.error }]}
+              onPress={() => {
+                Alert.alert(
+                  "Supprimer le compte",
+                  "Êtes-vous sûr ? Cette action supprimera TOUTES vos données (groupes, membres, cotisations). Elle est irréversible.",
+                  [
+                    { text: "Annuler", style: "cancel" },
+                    {
+                      text: "Supprimer définitivement",
+                      style: "destructive",
+                      onPress: async () => {
+                        try {
+                          const { getDatabase } = await import("../../src/database/database");
+                          const db = await getDatabase();
+                          await db.execAsync(`
+                            DELETE FROM contributions;
+                            DELETE FROM beneficiaries;
+                            DELETE FROM meetings;
+                            DELETE FROM app_notifications;
+                            DELETE FROM members;
+                            DELETE FROM groups;
+                            DELETE FROM settings;
+                            DELETE FROM users;
+                          `);
+                          const { AuthService } = await import("../../src/services/auth.service");
+                          await AuthService.clearSession();
+                          const { useAuthStore } = await import("../../src/stores");
+                          useAuthStore.getState().logout();
+                          router.replace("/(auth)/onboarding");
+                        } catch {
+                          Alert.alert("Erreur", "Impossible de supprimer le compte");
+                        }
+                      },
+                    },
+                  ]
+                );
+              }}
             >
-              <Text style={[s.cancelText, { color: C.textSecondary }]}>
-                Annuler
+              <Ionicons name="trash-outline" size={16} color={C.error} />
+              <Text style={[s.deleteAccountText, { color: C.error }]}>
+                Supprimer mon compte et mes données
               </Text>
             </TouchableOpacity>
           </View>
@@ -174,15 +160,7 @@ export default function ProfileScreen() {
   );
 }
 
-function SLabel({
-  icon,
-  label,
-  color,
-}: {
-  icon: string;
-  label: string;
-  color: string;
-}) {
+function SLabel({ icon, label, color }: { icon: string; label: string; color: string }) {
   return (
     <View style={s.sLabel}>
       <Ionicons name={icon as any} size={13} color={color} />
@@ -195,78 +173,47 @@ const s = StyleSheet.create({
   root: { flex: 1 },
   headerBg: { backgroundColor: "#0A3D2E" },
   headerRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 16,
-    paddingTop: 4,
-    paddingBottom: 12,
-    gap: 10,
+    flexDirection: "row", alignItems: "center",
+    paddingHorizontal: 16, paddingTop: 4, paddingBottom: 12, gap: 10,
   },
   iconBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: 38, height: 38, borderRadius: 19,
     backgroundColor: "rgba(255,255,255,0.15)",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "center", justifyContent: "center",
   },
-  headerTitle: {
-    flex: 1,
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "700",
-    textAlign: "center",
-  },
+  headerTitle: { flex: 1, color: "#fff", fontSize: 18, fontWeight: "700", textAlign: "center" },
   heroCentered: { alignItems: "center", paddingBottom: 16, gap: 4 },
   photoWrap: { position: "relative", marginBottom: 10 },
-  photo: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
-    borderWidth: 3,
-    borderColor: "rgba(255,255,255,0.3)",
-  },
+  photo: { width: 88, height: 88, borderRadius: 44, borderWidth: 3, borderColor: "rgba(255,255,255,0.3)" },
   photoFallback: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
-    backgroundColor: "#D4AF37",
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 3,
-    borderColor: "rgba(255,255,255,0.3)",
+    width: 88, height: 88, borderRadius: 44, backgroundColor: "#D4AF37",
+    alignItems: "center", justifyContent: "center",
+    borderWidth: 3, borderColor: "rgba(255,255,255,0.3)",
   },
   photoInitials: { fontSize: 30, fontWeight: "800", color: "#0A3D2E" },
   photoBadge: {
-    position: "absolute",
-    bottom: 2,
-    right: 2,
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    position: "absolute", bottom: 2, right: 2,
+    width: 24, height: 24, borderRadius: 12,
     backgroundColor: "#0A3D2E",
-    borderWidth: 2,
-    borderColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    borderWidth: 2, borderColor: "#fff",
+    alignItems: "center", justifyContent: "center",
   },
   heroName: { color: "#fff", fontSize: 18, fontWeight: "700" },
   heroPhone: { color: "rgba(255,255,255,0.6)", fontSize: 13 },
   scroll: { paddingHorizontal: 16, paddingTop: 8 },
-  sLabel: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    marginTop: 12,
-    marginBottom: 10,
-  },
+  sLabel: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: 12, marginBottom: 10 },
   sLabelText: { fontSize: 11, fontWeight: "700", letterSpacing: 1.2 },
-  cancelBtn: {
-    height: 50,
-    borderRadius: 14,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  cancelBtn: { height: 50, borderRadius: 14, borderWidth: 1, alignItems: "center", justifyContent: "center" },
   cancelText: { fontSize: 15, fontWeight: "600" },
+  dangerZone: {
+    marginTop: 32, borderWidth: 1, borderRadius: 16,
+    padding: 16, gap: 10,
+  },
+  dangerTitle: { fontSize: 13, fontWeight: "700", letterSpacing: 0.5 },
+  dangerSub: { fontSize: 12, lineHeight: 18 },
+  deleteAccountBtn: {
+    flexDirection: "row", alignItems: "center", justifyContent: "center",
+    gap: 8, height: 46, borderRadius: 12, borderWidth: 1.5,
+  },
+  deleteAccountText: { fontSize: 14, fontWeight: "700" },
 });

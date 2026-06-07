@@ -17,10 +17,11 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.tontineplus.app",
       "infoPlist": {
-        "NSFaceIDUsageDescription": "Utilisez Face ID pour déverrouiller TontinePlus",
+        "NSFaceIDUsageDescription": "Utilisez Face ID pour d\u00e9verrouiller TontinePlus",
         "NSCameraUsageDescription": "Prenez des photos de profil",
-        "NSPhotoLibraryUsageDescription": "Sélectionnez des photos de profil"
-      }
+        "NSPhotoLibraryUsageDescription": "S\u00e9lectionnez des photos de profil"
+      },
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,11 +33,27 @@
         "USE_BIOMETRIC",
         "USE_FINGERPRINT",
         "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE",
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
         "POST_NOTIFICATIONS"
+      ],
+      "versionCode": 1,
+      "compileSdkVersion": 35,
+      "targetSdkVersion": 35,
+      "minSdkVersion": 24,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "tontineplus"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
       ]
     },
     "web": {
@@ -62,22 +79,25 @@
       [
         "expo-local-authentication",
         {
-          "faceIDPermission": "Autoriser TontinePlus à utiliser Face ID"
+          "faceIDPermission": "Autoriser TontinePlus \u00e0 utiliser Face ID"
         }
       ],
       [
         "expo-image-picker",
         {
-          "photosPermission": "TontinePlus accède à vos photos pour les photos de profil"
+          "photosPermission": "TontinePlus acc\u00e8de \u00e0 vos photos pour les photos de profil"
         }
-      ],
-      "expo-asset",
-      "expo-font",
-      "expo-web-browser"
+      ]
     ],
     "scheme": "tontineplus",
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "09358c6d-81de-4742-b957-5a30e53f162a"
+      }
     }
   }
 }
