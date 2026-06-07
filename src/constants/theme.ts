@@ -1,0 +1,237 @@
+// src/constants/theme.ts
+export const Colors = {
+  // Primary Palette - Vert Émeraude
+  emerald: {
+    50: '#E8F5EE',
+    100: '#C5E8D4',
+    200: '#9DD9B7',
+    300: '#71CA98',
+    400: '#50BE82',
+    500: '#2EB36B',
+    600: '#25A25F',
+    700: '#1A8D50',
+    800: '#0F7941',
+    900: '#0A3D2E',
+    950: '#061F17',
+  },
+  // Accent - Or Africain
+  gold: {
+    50: '#FFF8E1',
+    100: '#FFECB3',
+    200: '#FFE082',
+    300: '#FFD54F',
+    400: '#FFCA28',
+    500: '#FFC107',
+    600: '#E6A800',
+    700: '#CC9600',
+    800: '#A67C00',
+    900: '#7A5C00',
+  },
+  // Terre Cuite
+  terracotta: {
+    100: '#FDDDC9',
+    200: '#FAB895',
+    300: '#F68F5C',
+    400: '#F2702D',
+    500: '#E8550A',
+    600: '#C44308',
+  },
+  // Beige Sable
+  sand: {
+    50: '#FDFAF4',
+    100: '#F9F3E3',
+    200: '#F2E6C8',
+    300: '#E8D5A3',
+    400: '#D9BF79',
+    500: '#C9A84C',
+  },
+  // Neutrals
+  neutral: {
+    0: '#FFFFFF',
+    50: '#F8F9FA',
+    100: '#F1F3F5',
+    200: '#E9ECEF',
+    300: '#DEE2E6',
+    400: '#CED4DA',
+    500: '#ADB5BD',
+    600: '#6C757D',
+    700: '#495057',
+    800: '#343A40',
+    900: '#212529',
+    950: '#0D1117',
+  },
+  // Semantic
+  success: '#2EB36B',
+  warning: '#FFC107',
+  danger: '#E53E3E',
+  info: '#3182CE',
+  // Status
+  paid: '#2EB36B',
+  partial: '#FFC107',
+  unpaid: '#E53E3E',
+  pending: '#718096',
+} as const;
+
+export const LightTheme = {
+  background: Colors.neutral[50],
+  surface: Colors.neutral[0],
+  surfaceElevated: Colors.neutral[0],
+  border: Colors.neutral[200],
+  borderFocus: Colors.emerald[500],
+  text: {
+    primary: Colors.neutral[900],
+    secondary: Colors.neutral[600],
+    tertiary: Colors.neutral[500],
+    inverse: Colors.neutral[0],
+    accent: Colors.emerald[700],
+  },
+  primary: Colors.emerald[700],
+  primaryLight: Colors.emerald[100],
+  accent: Colors.gold[500],
+  accentLight: Colors.gold[50],
+  danger: Colors.danger,
+  warning: Colors.warning,
+  success: Colors.success,
+  card: Colors.neutral[0],
+  tabBar: Colors.neutral[0],
+  tabBarActive: Colors.emerald[700],
+  tabBarInactive: Colors.neutral[400],
+  statusBar: 'dark' as const,
+  header: Colors.emerald[900],
+  headerText: Colors.neutral[0],
+  skeleton: Colors.neutral[200],
+  overlay: 'rgba(0,0,0,0.5)',
+  inputBackground: Colors.neutral[100],
+} as const;
+
+export const DarkTheme = {
+  background: Colors.neutral[950],
+  surface: Colors.neutral[900],
+  surfaceElevated: Colors.neutral[800],
+  border: Colors.neutral[700],
+  borderFocus: Colors.emerald[400],
+  text: {
+    primary: Colors.neutral[50],
+    secondary: Colors.neutral[400],
+    tertiary: Colors.neutral[500],
+    inverse: Colors.neutral[900],
+    accent: Colors.emerald[300],
+  },
+  primary: Colors.emerald[500],
+  primaryLight: Colors.emerald[950],
+  accent: Colors.gold[400],
+  accentLight: '#1A1500',
+  danger: '#FC8181',
+  warning: '#F6AD55',
+  success: '#68D391',
+  card: Colors.neutral[800],
+  tabBar: Colors.neutral[900],
+  tabBarActive: Colors.emerald[400],
+  tabBarInactive: Colors.neutral[600],
+  statusBar: 'light' as const,
+  header: Colors.neutral[900],
+  headerText: Colors.neutral[50],
+  skeleton: Colors.neutral[800],
+  overlay: 'rgba(0,0,0,0.7)',
+  inputBackground: Colors.neutral[800],
+} as const;
+
+export type Theme = typeof LightTheme;
+
+export const Typography = {
+  families: {
+    heading: 'System',
+    body: 'System',
+    mono: 'Courier New',
+  },
+  sizes: {
+    xs: 11,
+    sm: 13,
+    base: 15,
+    md: 17,
+    lg: 19,
+    xl: 22,
+    '2xl': 26,
+    '3xl': 30,
+    '4xl': 36,
+    '5xl': 44,
+  },
+  weights: {
+    regular: '400' as const,
+    medium: '500' as const,
+    semibold: '600' as const,
+    bold: '700' as const,
+    extrabold: '800' as const,
+    black: '900' as const,
+  },
+  lineHeights: {
+    tight: 1.2,
+    normal: 1.5,
+    relaxed: 1.7,
+  },
+} as const;
+
+export const Spacing = {
+  0: 0,
+  1: 4,
+  2: 8,
+  3: 12,
+  4: 16,
+  5: 20,
+  6: 24,
+  7: 28,
+  8: 32,
+  9: 36,
+  10: 40,
+  12: 48,
+  14: 56,
+  16: 64,
+  20: 80,
+} as const;
+
+export const Radius = {
+  sm: 6,
+  md: 10,
+  lg: 16,
+  xl: 20,
+  '2xl': 28,
+  full: 9999,
+} as const;
+
+export const Elevation = {
+  none: {
+    shadowColor: 'transparent',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+  sm: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  md: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  lg: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.16,
+    shadowRadius: 16,
+    elevation: 8,
+  },
+  xl: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 16 },
+    shadowOpacity: 0.24,
+    shadowRadius: 24,
+    elevation: 16,
+  },
+} as const;
