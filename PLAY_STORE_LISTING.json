@@ -1,0 +1,11 @@
+{
+  "titre": "TontinePlus — Gestion de Tontines",
+  "courte": "Gérez vos tontines facilement. Suivi des cotisations, rotation automatique, 100% hors ligne.",
+  "longue": "Gérez facilement vos groupes d'épargne solidaire (tontines) avec TontinePlus, l'application conçue pour les communautés d'Afrique francophone.\n\n🌿 SIMPLE ET INTUITIF\nCréez votre tontine en quelques minutes. Ajoutez vos membres, définissez le montant et la fréquence de cotisation, et laissez l'app faire le reste.\n\n💰 SUIVI DES COTISATIONS\nEnregistrez chaque paiement en quelques secondes. Sachez en temps réel qui a payé, qui est en retard, et quel est le taux de collecte de votre groupe.\n\n🔄 ROTATION AUTOMATIQUE\nConfigurez le calendrier de rotation des bénéficiaires automatiquement. Choisissez l'ordre : manuel, automatique ou tirage au sort.\n\n📊 RAPPORTS DÉTAILLÉS\nVisualisez l'évolution mensuelle des cotisations. Exportez vos données en JSON ou CSV pour votre comptabilité.\n\n🔒 SÉCURISÉ ET PRIVÉ\nProtégez l'accès avec un code PIN ou la biométrie (empreinte digitale, Face ID). Toutes vos données restent sur votre téléphone — aucun serveur, aucun cloud.\n\n📵 100% HORS LIGNE\nTontinePlus fonctionne sans connexion internet. Idéal pour les zones à faible connectivité.\n\n💾 SAUVEGARDE FACILE\nExportez et importez vos données via un fichier JSON. Partagez votre sauvegarde par WhatsApp, email ou AirDrop.\n\nFONCTIONNALITÉS PRINCIPALES\n• Gestion multi-groupes (plusieurs tontines simultanées)\n• Devises : FCFA (XOF/XAF), Euro, Dollar, Franc guinéen\n• Fréquences : quotidienne, hebdomadaire, mensuelle, personnalisée\n• Fiches membres avec photo, téléphone, profession\n• Paiements complets ou partiels avec clavier intégré\n• Agenda des réunions et événements\n• Mode sombre / clair\n• Interface en français\n\nTéléchargez TontinePlus gratuitement et simplifiez la gestion de votre tontine dès aujourd'hui !\n",
+  "mots_cles": "tontine, épargne, cotisation, Afrique, FCFA, finance, groupe, solidarité, CFA",
+  "categorie": "Finance",
+  "classification": "PEGI 3 (Pour tous)",
+  "site_web": "https://github.com/tontineplus",
+  "email_support": "ismaeldiom70@gmail.com",
+  "politique_confidentialite": "https:///privacy-policy"
+}

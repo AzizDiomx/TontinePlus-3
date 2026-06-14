@@ -17,9 +17,10 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.tontineplus.app",
       "infoPlist": {
-        "NSFaceIDUsageDescription": "Utilisez Face ID pour d\u00e9verrouiller TontinePlus",
+        "NSFaceIDUsageDescription": "Utilisez Face ID pour déverrouiller TontinePlus",
         "NSCameraUsageDescription": "Prenez des photos de profil",
-        "NSPhotoLibraryUsageDescription": "S\u00e9lectionnez des photos de profil"
+        "NSPhotoLibraryUsageDescription": "Sélectionnez des photos de profil",
+        "ITSAppUsesNonExemptEncryption": false
       },
       "buildNumber": "1"
     },
@@ -30,12 +31,15 @@
       },
       "package": "com.tontineplus.app",
       "permissions": [
-        "USE_BIOMETRIC",
-        "USE_FINGERPRINT",
-        "CAMERA",
-        "RECEIVE_BOOT_COMPLETED",
-        "VIBRATE",
-        "POST_NOTIFICATIONS"
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.CAMERA",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.RECORD_AUDIO"
       ],
       "versionCode": 1,
       "compileSdkVersion": 35,
@@ -79,13 +83,13 @@
       [
         "expo-local-authentication",
         {
-          "faceIDPermission": "Autoriser TontinePlus \u00e0 utiliser Face ID"
+          "faceIDPermission": "Autoriser TontinePlus à utiliser Face ID"
         }
       ],
       [
         "expo-image-picker",
         {
-          "photosPermission": "TontinePlus acc\u00e8de \u00e0 vos photos pour les photos de profil"
+          "photosPermission": "TontinePlus accède à vos photos pour les photos de profil"
         }
       ]
     ],
